@@ -1,0 +1,147 @@
+//theme colors
+$primary: #326dee;
+$secondary: #1ac888;
+$error: #d32752;
+$info: #f6c31c;
+
+// color palette
+
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "error": $error,
+  "info":$info,
+  "blue": #0d6efd,
+  "indigo": #6610f2,
+  "purple": #6f42c1,
+  "pink": #d63384,
+  "red": #dc3545,
+  "orange": #fd7e14,
+  "yellow": #ffc107,
+  "green": #198754,
+  "teal": #20c997,
+  "cyan": #0dcaf0,
+  "gray": #808080,
+  "black": black,
+  "white": white,
+);
+
+.test-btn {
+  background-color: map-get($colors, "purple");
+}
+
+// @debug map-get($colors, "purple");
+// @debug map-get($colors, "secondary");
+// @debug map-remove($colors, "teal");
+// @debug map-merge($colors, ("dark-red": #800000));
+
+// spacing
+
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+$base-margin-y: 0.75rem;
+$base-margin-x: 0.75rem;
+$base-padding-x: 0.75rem;
+$base-padding-y: 0.75rem;
+
+$utilities: (
+  "margin": ("prefix": "mx",
+    "values": ("0": 0,
+      "1":0 $base-margin-x ,
+      "2":0 $base-margin-x * 2,
+      "3":0 $base-margin-x * 4,
+      "4":0 $base-margin-x * 6,
+      "5":0 $base-margin-x * 8),
+  ),
+  "padding": ("prefix": "px",
+    "values": ("0": 0,
+      "1":0 $base-padding-x ,
+      "2":0 $base-padding-x * 2,
+      "3":0 $base-padding-x * 4,
+      "4":0 $base-padding-x * 6,
+      "5":0 $base-padding-x * 8),
+  ),
+);
+$utilitie: (
+  "margin": ("prefix": "my",
+    "values": ("0": 0,
+      "1": $base-margin-y ,
+      "2": $base-margin-y 0* 2,
+      "3": $base-margin-y 0* 4,
+      "4": $base-margin-y 0* 6,
+      "5": $base-margin-y 0* 8),
+  ),
+  "padding": ("prefix": "py",
+    "values": ("0": 0,
+      "1": $base-padding-y ,
+      "2": $base-padding-y 0* 2,
+      "3": $base-padding-y 0* 4,
+      "4": $base-padding-y 0* 6,
+      "5": $base-padding-y 0* 8),
+  ),
+);
+
+
+
+
+// generate utility classes
+@each $property,
+$map in $utilities {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+
+  @each $key,
+  $val in $values {
+    @if($key =="default") {
+      .#{$prefix} {
+        #{$property}: $val;
+      }
+    }
+
+    @else {
+      .#{$prefix}-#{$key} {
+        #{$property}: $val;
+      }
+    }
+  }
+}
+
+@each $property,
+$map in $utilitie {
+  $prefix: map-get($map, "prefix");
+  $values: map-get($map, "values");
+
+  @each $key,
+  $val in $values {
+    @if($key =="default") {
+      .#{$prefix} {
+        #{$property}: $val;
+      }
+    }
+
+    @else {
+      .#{$prefix}-#{$key} {
+        #{$property}: $val;
+      }
+    }
+  }
+}
+
+
+// borders
+
+$base-border-thickness: 1px;
+$base-border-radius: 20px;
+
+// box shadow
+
+$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+
+// font size
+
+$base-font-size: 1rem;
+$base-font-sm: $base-font-size * 0.75;
+$base-font-lg: $base-font-size * 1.5;
+$base-font-xl: $base-font-size * 2;
+$base-font-xxl: $base-font-size * 3
